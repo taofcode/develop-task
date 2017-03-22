@@ -37,6 +37,11 @@
             <artifactId>electronic-payments-dao</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.econetwireless</groupId>
+            <artifactId>intelligent-network-api</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
