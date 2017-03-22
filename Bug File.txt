@@ -1,0 +1,6 @@
+1. static omitiion on LOGGER that is being called ffrom a static method in MobileNumberUtils class
+2. PrePersist replaced PreInsert no such methos 
+3. update and persist EnquiriesServiceImpl and CreditsServiceImpl
+4. super method not working in Validator class
+5.  use of the Request instead of SubscriberRequest in JPQL NamedQuery
+6. ChangeImpl Not correctly called
