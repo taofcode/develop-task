@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class ReportingServiceImpl implements ReportingService {
 
-    private SubscriberRequestDao subscriberRequestDao;
+    public SubscriberRequestDao subscriberRequestDao;
 
     public ReportingServiceImpl(SubscriberRequestDao subscriberRequestDao) {
         this.subscriberRequestDao = subscriberRequestDao;

@@ -9,9 +9,8 @@ import java.util.Date;
 /**
  * Created by tnyamakura on 17/3/2017.
  */
-@Entity(name = "request")
-@EntityListeners(SubscriberRequest.class)
-@NamedQueries({@NamedQuery(name = "SubscriberRequest.findByPartnerCode", query = "select r from Request r where r.partnerCode = :partnerCode order by r.dateCreated desc ")})
+@Entity
+@NamedQueries({@NamedQuery(name = "SubscriberRequest.findByPartnerCode", query = "select r from SubscriberRequest r where r.partnerCode = :partnerCode order by r.dateCreated desc ")})
 @Table(name = "e_request", indexes = {@Index(name = "req_msisdn_indx", columnList = "mobile_number")})
 public class SubscriberRequest {
     @Id

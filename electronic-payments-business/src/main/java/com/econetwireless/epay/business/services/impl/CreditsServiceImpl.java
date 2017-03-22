@@ -12,6 +12,7 @@ import com.econetwireless.utils.pojo.INCreditRequest;
 import com.econetwireless.utils.pojo.INCreditResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -22,8 +23,9 @@ public class CreditsServiceImpl implements CreditsService{
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CreditsServiceImpl.class);
 
-    private ChargingPlatform chargingPlatform;
-    private SubscriberRequestDao subscriberRequestDao;
+    public ChargingPlatform chargingPlatform;
+    @Autowired
+    public SubscriberRequestDao subscriberRequestDao;
 
     public CreditsServiceImpl(ChargingPlatform chargingPlatform, SubscriberRequestDao subscriberRequestDao) {
         this.chargingPlatform = chargingPlatform;
@@ -35,10 +37,10 @@ public class CreditsServiceImpl implements CreditsService{
         LOGGER.info("Credit airtime Request : {}", airtimeTopupRequest);
         final AirtimeTopupResponse airtimeTopupResponse = new AirtimeTopupResponse();
         final SubscriberRequest subscriberRequest = populateSubscriberRequest(airtimeTopupRequest);
-        final SubscriberRequest createdSubscriberRequest = subscriberRequestDao.persist(subscriberRequest);
+        final SubscriberRequest createdSubscriberRequest = subscriberRequestDao.saveAndFlush(subscriberRequest);
         final INCreditResponse inCreditResponse = chargingPlatform.creditSubscriberAccount(populate(airtimeTopupRequest));
         changeSubscriberRequestStatusOnCredit(createdSubscriberRequest, inCreditResponse);
-        subscriberRequestDao.update(createdSubscriberRequest);
+        subscriberRequestDao.saveAndFlush(createdSubscriberRequest);
         airtimeTopupResponse.setResponseCode(inCreditResponse.getResponseCode());
         airtimeTopupResponse.setNarrative(inCreditResponse.getNarrative());
         airtimeTopupResponse.setMsisdn(airtimeTopupRequest.getMsisdn());
