@@ -2,7 +2,8 @@ package com.econetwireless.epay.business.config;
 
 import com.econetwireless.epay.business.integrations.api.ChargingPlatform;
 import com.econetwireless.epay.business.integrations.impl.ChargingPlatformImpl;
-import com.econetwireless.in.webservice.IntelligentNetworkService;
+
+import com.econetwireless.in.soap.service.IntelligentNetworkService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
